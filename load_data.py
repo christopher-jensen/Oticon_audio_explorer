@@ -18,14 +18,21 @@ def add_class_label(df, label, value):
     df[label] = value
     return df
 
-def main():
+def get_data_with_labels():
     music_data = np.load('./Data/music_data.npy')
     other_data = np.load('./Data/other_data.npy')
     music_data_df = convert_to_df(music_data)
     other_data_df = convert_to_df(other_data)
+    music_data_df = add_class_label(music_data_df, "average", music_data_df.mean(axis=1))
+    other_data_df = add_class_label(other_data_df, "average", other_data_df.mean(axis=1))
     music_data_df = add_class_label(music_data_df, "is_music", 1)
     other_data_df = add_class_label(other_data_df, "is_music", 0)
     all_data_df = pd.concat([music_data_df, other_data_df], ignore_index=True)
+    return all_data_df
+
+def main():
+    all_data = get_data_with_labels()
+    # print(all_data.iloc[:,-2:,100])
 
 
 if __name__ == '__main__':
