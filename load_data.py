@@ -25,7 +25,7 @@ def main():
     other_data_df = convert_to_df(other_data)
     music_data_df = add_class_label(music_data_df, "is_music", 1)
     other_data_df = add_class_label(other_data_df, "is_music", 0)
-    all_data_df = music_data_df.append(other_data_df, ignore_index=True)
+    all_data_df = pd.concat([music_data_df, other_data_df], ignore_index=True)
 
 
 if __name__ == '__main__':
