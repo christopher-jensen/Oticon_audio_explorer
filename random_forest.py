@@ -48,6 +48,7 @@ def print_random_forest_predictions(y_test, y_pred, n_of_trees, depth):
 def main():
     data = ld.get_data_with_labels()
     x_train, x_test, y_train, y_test = transform_data(data)
+    x_test = ld.get_test_data().iloc[:,-1:].values
     for i in range(1,2):
         for j in range(1, 2):
             # n_of_trees = 1*10**i
@@ -55,7 +56,8 @@ def main():
             depth = j
             classifier = train_model(x_train, y_train, n_of_trees)
             y_pred = classifier. predict(x_test)
-            print_random_forest_predictions(y_test, y_pred, n_of_trees, depth)
+            print(y_pred[::10])
+            # print_random_forest_predictions(y_test, y_pred, n_of_trees, depth)
 
 if __name__ == "__main__":
     main()
