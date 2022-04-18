@@ -18,13 +18,16 @@ def add_class_label(df, label, value):
     df[label] = value
     return df
 
+def load_npy_file(file):
+    return np.load(file)
+
 def get_data_with_labels():
-    music_data = np.load('./Data/music_data.npy')
-    other_data = np.load('./Data/other_data.npy')
+    music_data = load_npy_file('./Data/music_data.npy')
+    other_data = load_npy_file('./Data/other_data.npy')
     music_data_df = convert_to_df(music_data)
     other_data_df = convert_to_df(other_data)
-    music_data_df = add_class_label(music_data_df, "average", music_data_df.mean(axis=1))
-    other_data_df = add_class_label(other_data_df, "average", other_data_df.mean(axis=1))
+    # music_data_df = add_class_label(music_data_df, "average", music_data_df.mean(axis=1))
+    # other_data_df = add_class_label(other_data_df, "average", other_data_df.mean(axis=1))
     music_data_df = add_class_label(music_data_df, "is_music", 1)
     other_data_df = add_class_label(other_data_df, "is_music", 0)
     all_data_df = pd.concat([music_data_df, other_data_df], ignore_index=True)
@@ -33,21 +36,21 @@ def get_data_with_labels():
 def get_only_other_data():
     other_data = np.load('./Data/other_data.npy')
     other_data_df = convert_to_df(other_data)
-    other_data_df = add_class_label(other_data_df, "average", other_data_df.mean(axis=1))
+    # other_data_df = add_class_label(other_data_df, "average", other_data_df.mean(axis=1))
     other_data_df = add_class_label(other_data_df, "is_music", 0)
     return other_data_df
 
 def get_only_music_data():
     music_data = np.load('./Data/music_data.npy')
     music_data_df = convert_to_df(music_data)
-    music_data_df = add_class_label(music_data_df, "average", music_data_df.mean(axis=1))
+    # music_data_df = add_class_label(music_data_df, "average", music_data_df.mean(axis=1))
     music_data_df = add_class_label(music_data_df, "is_music", 1)
     return music_data_df
 
 def get_test_data():
     test_data = np.load("./Data/test_data.npy")
     test_data_df = convert_to_df(test_data)
-    test_data_df = add_class_label(test_data_df, "average", test_data_df.mean(axis=1))
+    # test_data_df = add_class_label(test_data_df, "average", test_data_df.mean(axis=1))
     # print(test_data_df)
     return test_data_df
 
