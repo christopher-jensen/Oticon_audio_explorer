@@ -18,7 +18,7 @@ def split_dataframe_on_intervals(df, rows_to_get, interval):
     # Append first frequencyband to df
     df_ls.append(df.iloc[:,0:interval])
     for i in rows_to_get:
-        start = (79*(2**i))+20
+        start = (79*(2**i))
         end = start+interval
         df_ls.append(df.iloc[:, start : end:79])
     return df_ls
@@ -27,7 +27,7 @@ def split_dataframe_on_intervals(df, rows_to_get, interval):
 def flatten_dataframe_to_n2_frequency_band():
     df = ld.get_data_with_labels()
     rows_to_get = [0,2,3,4]
-    interval = 20
+    interval = 10
     df_ls = split_dataframe_on_intervals(df, rows_to_get, interval)
     # Append classification to dataframe
     df_ls.append(df.iloc[:,-1])
@@ -37,7 +37,7 @@ def flatten_dataframe_to_n2_frequency_band():
 def flatten_dataframe_to_n2_frequency_band_unlabeled():
     df = ld.get_test_data()
     rows_to_get = [0,2,3,4]
-    interval = 20
+    interval = 10
     df_ls = split_dataframe_on_intervals(df, rows_to_get, interval)
 
     return pd.concat(df_ls, axis=1, ignore_index=True)

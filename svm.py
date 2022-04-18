@@ -59,7 +59,7 @@ def main():
     # print(report)
 
     # SAVE RESULTS
-    # np.save('results.npy', Y_pred)
+    np.savetxt('results.txt', Y_pred, delimiter='\n')
 
 if __name__ == '__main__':
     main()
