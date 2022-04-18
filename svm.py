@@ -1,4 +1,5 @@
 import os
+from unittest import result
 import pandas as pd
 from dotenv import load_dotenv
 from sklearn import svm
@@ -6,6 +7,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, classification_report
 import flatten_data as fd
 import load_data as ld
+import numpy as np
 
 class SVCConfiguration:
     def __init__(self, kernel, soft_margin, gamma, poly_degrees=2):
@@ -49,12 +51,15 @@ def main():
     classifier   = create_and_fit_SVC_classifier(X_train, Y_train)
 
     # Get predictions and measure accuracy
-    Y_pred = classifier.predict(X_test)
-    accuracy = accuracy_score(Y_test.iloc[:,-1], Y_pred)
-    report = classification_report(Y_test.iloc[:,-1], Y_pred)
-    print(accuracy)
-    print("------------------------------------------------------------")
-    print(report)
+    Y_pred = classifier.predict(df_test)
+    # accuracy = accuracy_score(Y_test.iloc[:,-1], Y_pred)
+    # report = classification_report(Y_test.iloc[:,-1], Y_pred)
+    # print(accuracy)
+    # print("------------------------------------------------------------")
+    # print(report)
+
+    # SAVE RESULTS
+    # np.save('results.npy', Y_pred)
 
 if __name__ == '__main__':
     main()

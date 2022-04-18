@@ -57,10 +57,15 @@ def get_test_data():
 def main():
     all_data = get_data_with_labels()
     # print(all_data.iloc[::1000,-2:])
-    plot1 = get_only_music_data().iloc[::2000,:-1:79].transpose().plot()
-    plot2 =get_only_music_data().iloc[::2000,0:79:4].transpose().plot()
-    plot3 = get_only_other_data().iloc[::2000,:-1:79].transpose().plot()
-    plot4 =get_only_other_data().iloc[::2000,0:79:4].transpose().plot()
+    # plot1 = get_only_music_data().iloc[::2000,:-1:79].transpose().plot()
+    plot2 =get_only_music_data().iloc[::10000,0:10].transpose().plot()
+    plt.title("music data")
+    # plot3 = get_only_other_data().iloc[::2000,:-1:79].transpose().plot()
+    plot4 =get_only_other_data().iloc[::10000,0:10].transpose().plot()
+    plt.title("other data")
+
+    plot5 = get_test_data().iloc[::2000,0:10].transpose().plot()
+    plt.title("unlabled data")
     # plot1.title("frequencybands")
     # plot2.title("frequencytime")
 
